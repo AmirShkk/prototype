@@ -1,0 +1,20 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro'
+import HubDashboardContent from '@/components/hub_dashboard/HubDashboardContent'
+
+const userRole = 'hub'
+const userName = 'Neha Shah'
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/954e42f5-6563-482e-b5d4-63897dba9a27.png'
+const cartCount = 0
+---
+
+<StandardLayout 
+  title="Hub Dashboard - FarmHub Connect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+  cartCount={cartCount}
+>
+  <HubDashboardContent client:load />
+</StandardLayout>

@@ -1,0 +1,29 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro'
+import AddProductForm from '@/components/add-product/AddProductForm'
+
+const userRole = 'farmer'
+const userName = 'Ramesh Patel'
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/98e85076-de53-44d4-871a-286ba77b51ec.png'
+const currentPath = Astro.url.pathname
+---
+
+<StandardLayout 
+  title="Add New Product | FarmHub Connect" 
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+  currentPath={currentPath}
+>
+  <div class="page-body">
+    <div class="max-w-2xl mx-auto">
+      <div class="mb-8">
+        <h1 class="text-page-title mb-2">Add New Product</h1>
+        <p class="text-caption">Fill in the details below to list a new product on the marketplace.</p>
+      </div>
+      
+      <AddProductForm client:load />
+    </div>
+  </div>
+</StandardLayout>

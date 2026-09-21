@@ -1,0 +1,247 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background & Surface */
+    --background: 40 15% 97%;
+    --foreground: 142 15% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 142 15% 15%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 142 15% 15%;
+
+    /* Brand */
+    --primary: 142 76% 36%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 28 82% 52%;
+    --secondary-foreground: 0 0% 100%;
+    --accent: 199 89% 48%;
+    --accent-foreground: 0 0% 100%;
+
+    /* Muted */
+    --muted: 142 10% 95%;
+    --muted-foreground: 142 10% 45%;
+
+    /* State & UI */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 142 10% 88%;
+    --input: 142 10% 88%;
+    --ring: 142 76% 36%;
+    --radius: 0.5rem;
+
+    /* Hover states */
+    --primary-hover: 142 76% 32%;
+    --secondary-hover: 28 82% 46%;
+    --accent-hover: 199 89% 42%;
+    --muted-hover: 142 10% 91%;
+
+    /* Custom state colors */
+    --success: 142 71% 45%;
+    --warning: 45 93% 47%;
+
+    /* Shadows */
+    --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.08);
+    --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.12);
+    --shadow-raised: 0 6px 20px rgba(0, 0, 0, 0.15);
+
+    /* Font stack — warm, readable character */
+    --font-sans: "SF Pro Text", "Segoe UI", "Helvetica Neue", system-ui, sans-serif;
+  }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  html {
+    overscroll-behavior: none;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+  }
+}
+
+@layer components {
+  /* === REQUIRED UTILITY CLASSES === */
+  .text-page-title {
+    @apply text-3xl font-bold tracking-tight;
+    letter-spacing: 0.01em;
+    line-height: 1.3;
+  }
+
+  .text-body {
+    @apply text-base text-foreground;
+    line-height: 1.7;
+  }
+
+  .page-body {
+    @apply px-6 py-8 md:px-8 md:py-10;
+  }
+
+  .card-padding {
+    @apply p-6;
+  }
+
+  .surface-base {
+    @apply bg-card border border-border rounded-[--radius];
+    box-shadow: var(--shadow-soft);
+  }
+
+  .surface-raised {
+    @apply bg-card border border-border rounded-[--radius];
+    box-shadow: var(--shadow-card);
+  }
+
+  /* === RECOMMENDED TYPOGRAPHY === */
+  .text-section-title {
+    @apply text-xl font-semibold tracking-tight;
+    letter-spacing: 0.01em;
+    line-height: 1.4;
+  }
+
+  .text-item-title {
+    @apply text-lg font-medium;
+    line-height: 1.5;
+  }
+
+  .text-caption {
+    @apply text-sm text-muted-foreground;
+    line-height: 1.5;
+  }
+
+  .text-label {
+    @apply text-sm font-medium text-foreground;
+    line-height: 1.4;
+  }
+
+  /* === SPACING === */
+  .page-container {
+    @apply max-w-7xl mx-auto;
+  }
+
+  .section-spacing {
+    @apply my-12;
+  }
+
+  /* === INTERACTION === */
+  .interactive {
+    @apply transition-all duration-150 cursor-pointer;
+  }
+
+  .interactive:hover {
+    box-shadow: var(--shadow-card);
+  }
+
+  /* === STRUCTURE === */
+  .page-section-header {
+    @apply flex items-center justify-between mb-6;
+  }
+
+  .filter-bar {
+    @apply flex flex-wrap items-center gap-3 mb-6 p-4 bg-muted/30 rounded-[--radius] border border-border;
+  }
+
+  .empty-state {
+    @apply flex flex-col items-center justify-center text-center text-muted-foreground py-16 px-6;
+  }
+
+  /* === APP-SPECIFIC PATTERNS === */
+
+  /* Status badge color variants */
+  .status-pending {
+    background-color: hsl(var(--warning) / 0.1);
+    color: hsl(var(--warning));
+    border: 1px solid hsl(var(--warning) / 0.3);
+  }
+
+  .status-completed {
+    background-color: hsl(var(--success) / 0.1);
+    color: hsl(var(--success));
+    border: 1px solid hsl(var(--success) / 0.3);
+  }
+
+  .status-cancelled {
+    background-color: hsl(var(--destructive) / 0.1);
+    color: hsl(var(--destructive));
+    border: 1px solid hsl(var(--destructive) / 0.3);
+  }
+
+  .status-active {
+    background-color: hsl(var(--accent) / 0.1);
+    color: hsl(var(--accent));
+    border: 1px solid hsl(var(--accent) / 0.3);
+  }
+
+  /* Product/stats card hover lift */
+  .card-lift {
+    @apply transition-all duration-200;
+  }
+
+  .card-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-raised);
+    border-color: hsl(var(--primary) / 0.4);
+  }
+
+  /* KPI stat card variants */
+  .stat-card-primary {
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.08) 0%, hsl(var(--primary) / 0.02) 100%);
+    border-color: hsl(var(--primary) / 0.2);
+  }
+
+  .stat-card-secondary {
+    background: linear-gradient(135deg, hsl(var(--secondary) / 0.08) 0%, hsl(var(--secondary) / 0.02) 100%);
+    border-color: hsl(var(--secondary) / 0.2);
+  }
+
+  .stat-card-accent {
+    background: linear-gradient(135deg, hsl(var(--accent) / 0.08) 0%, hsl(var(--accent) / 0.02) 100%);
+    border-color: hsl(var(--accent) / 0.2);
+  }
+
+  /* Timeline connector line */
+  .timeline-connector {
+    @apply absolute left-5 top-10 bottom-0 w-0.5;
+    background: linear-gradient(to bottom, hsl(var(--primary)) 0%, hsl(var(--muted)) 100%);
+  }
+
+  /* Form section wrapper */
+  .form-section {
+    @apply space-y-6 p-6 bg-muted/20 rounded-[--radius] border border-border;
+  }
+
+  /* Scrollable table container */
+  .table-scroll-container {
+    @apply overflow-x-auto border border-border rounded-[--radius];
+  }
+
+  /* Table row hover */
+  .table-row-hover {
+    @apply hover:bg-muted/30 transition-colors cursor-pointer;
+  }
+
+  /* Cart badge pulse animation */
+  .cart-badge-pulse {
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+  }
+
+  /* Hero gradient overlay (used in auth pages) */
+  .hero-gradient {
+    background: linear-gradient(180deg, hsl(var(--background)) 0%, hsl(40 15% 94%) 100%);
+  }
+}
+    

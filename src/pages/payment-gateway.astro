@@ -1,0 +1,19 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro'
+import PaymentGateway from '@/components/payment_gateway/PaymentGateway'
+
+const userRole = 'consumer'
+const userName = 'Ananya Roy'
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/34f3115a-ee53-4b16-9931-b4c23479c5ee.png'
+---
+
+<StandardLayout 
+  title="Secure Payment - FarmConnect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+  cartCount={0}
+>
+  <PaymentGateway client:load />
+</StandardLayout>

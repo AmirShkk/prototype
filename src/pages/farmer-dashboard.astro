@@ -1,0 +1,20 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro'
+import DashboardContent from '@/components/farmer-dashboard/DashboardContent'
+
+const userRole = 'farmer'
+const userName = 'Ramesh Patel'
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/dbb06f55-15b4-4b3a-acc7-fa8abf85f624.png'
+const cartCount = 0
+---
+
+<StandardLayout 
+  title="Farmer Dashboard - FarmHub Connect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+  cartCount={cartCount}
+>
+  <DashboardContent client:load farmerId="far-001" />
+</StandardLayout>

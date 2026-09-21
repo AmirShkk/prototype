@@ -1,0 +1,18 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro'
+import HubReceivingLogContent from '@/components/hub_receiving_log/HubReceivingLogContent'
+
+const userRole = 'hub'
+const userName = 'Imran Ali'
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/cbab3368-4eb0-4683-b061-0313fc1e4cba.png'
+---
+
+<StandardLayout 
+  title="Farmer Delivery Log - FarmHub Connect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+>
+  <HubReceivingLogContent client:load />
+</StandardLayout>

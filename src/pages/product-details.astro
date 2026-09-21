@@ -1,0 +1,20 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro';
+import ProductDetailsContent from '@/components/product_details/ProductDetailsContent';
+
+const userRole = 'consumer';
+const userName = 'Rajesh Kumar';
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/4724825a-2439-475b-8668-4636bb961b21.png';
+const cartCount = 3;
+---
+
+<StandardLayout 
+  title="Product Details | FarmConnect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+  cartCount={cartCount}
+>
+  <ProductDetailsContent client:load />
+</StandardLayout>

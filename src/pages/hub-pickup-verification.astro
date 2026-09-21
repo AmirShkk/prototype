@@ -1,0 +1,19 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro';
+import PickupVerificationContent from '@/components/hub_pickup_verification/PickupVerificationContent';
+
+const userRole = 'hub';
+const userName = 'Neha Shah';
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/34f3115a-ee53-4b16-9931-b4c23479c5ee.png';
+const hubId = 'hub-001';
+---
+
+<StandardLayout 
+  title="Consumer Pickup Verification | FarmHub Connect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+>
+  <PickupVerificationContent client:load hubId={hubId} />
+</StandardLayout>

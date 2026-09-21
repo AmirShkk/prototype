@@ -1,0 +1,18 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro'
+import HubLogisticsContent from '@/components/hub_logistics/HubLogisticsContent'
+
+const userRole = 'hub'
+const userName = 'Neha Shah'
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/34f3115a-ee53-4b16-9931-b4c23479c5ee.png'
+---
+
+<StandardLayout 
+  title="Hub Logistics & Inventory | FarmHub Connect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+>
+  <HubLogisticsContent client:load />
+</StandardLayout>

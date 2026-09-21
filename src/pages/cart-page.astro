@@ -1,0 +1,20 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro'
+import CartPageContent from '@/components/cart_page/CartPageContent'
+
+const userRole = 'consumer'
+const userName = 'Ananya Roy'
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/34f3115a-ee53-4b16-9931-b4c23479c5ee.png'
+const cartCount = 2
+---
+
+<StandardLayout 
+  title="Shopping Cart | FarmHub Connect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+  cartCount={cartCount}
+>
+  <CartPageContent client:load consumerId="con-001" />
+</StandardLayout>

@@ -1,0 +1,20 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro';
+import InventoryContent from '@/components/inventory_management/InventoryContent';
+
+const userRole = 'farmer';
+const userName = 'Ramesh Patel';
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/f9e7fe03-9319-49e5-ac2f-98f3fb2b9b98.png';
+const currentPath = Astro.url.pathname;
+---
+
+<StandardLayout 
+  title="My Stocks & Inventory | FarmHub Connect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+  currentPath={currentPath}
+>
+  <InventoryContent client:load />
+</StandardLayout>

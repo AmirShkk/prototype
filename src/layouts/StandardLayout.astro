@@ -1,0 +1,47 @@
+
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import AppHeader from '@/components/common/AppHeader';
+
+interface Props {
+  title: string;
+  userRole: 'farmer' | 'hub' | 'consumer';
+  userName: string;
+  userAvatar?: string;
+  cartCount?: number;
+}
+
+const { title, userRole, userName, userAvatar, cartCount = 0 } = Astro.props;
+const currentPath = Astro.url.pathname;
+---
+
+<BaseLayout title={title}>
+  <div class="flex flex-col h-screen overflow-hidden bg-background">
+    <AppHeader 
+      client:load 
+      userRole={userRole} 
+      userName={userName} 
+      userAvatar={userAvatar}
+      currentPath={currentPath}
+      cartCount={cartCount}
+      onSignOut={() => {
+        // Logic to clear local state/JWT could go here
+        window.location.href = './auth-portal.html';
+      }}
+    />
+    
+    <main class="flex-1 overflow-y-auto min-h-0">
+      <div class="page-container w-full h-full">
+        <slot />
+      </div>
+    </main>
+  </div>
+</BaseLayout>
+
+<style is:global>
+  /* Ensure the main area fills the space but stays constrained */
+  main {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+  }
+</style>

@@ -1,0 +1,20 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro';
+import MarketplaceContent from '@/components/consumer_marketplace/MarketplaceContent';
+
+const userRole = 'consumer';
+const userName = 'Ananya Roy';
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/8d8e6e78-907a-4931-a9f4-44eec950ccf1.png';
+const cartCount = 0;
+---
+
+<StandardLayout 
+  title="Consumer Marketplace | FarmConnect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+  cartCount={cartCount}
+>
+  <MarketplaceContent client:load />
+</StandardLayout>

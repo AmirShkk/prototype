@@ -1,0 +1,96 @@
+
+---
+import '../styles/global.css';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import { Card } from '@/components/ui/card';
+
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<BaseLayout title={title}>
+  <div class="min-h-screen flex flex-col md:flex-row bg-background">
+    {/* Branding / Hero Visual Side */}
+    <div class="hidden md:flex md:w-1/2 lg:w-3/5 bg-primary relative overflow-hidden items-center justify-center p-12">
+      <div class="absolute inset-0 opacity-20">
+        <img 
+          src="https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/36444c99-147c-48fe-8a3a-f5d51bcbcefe.png" 
+          alt="Farm Landscape"
+          class="w-full h-full object-cover"
+        />
+      </div>
+      <div class="relative z-10 max-w-lg text-primary-foreground space-y-6">
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-lg">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-8 h-8 text-primary">
+              <path d="M12 3L2 12h3v8h14v-8h3L12 3z" />
+              <path d="M9 20v-5h6v5" />
+            </svg>
+          </div>
+          <h1 class="text-4xl font-black tracking-tight uppercase">KrishiLink</h1>
+        </div>
+        <div class="space-y-4">
+          <h2 class="text-5xl font-bold leading-tight">Connecting Farms to Your Table.</h2>
+          <p class="text-xl text-primary-foreground/90 font-medium leading-relaxed">
+            The direct digital bridge between hard-working farmers, local distribution hubs, and conscious consumers.
+          </p>
+        </div>
+        <div class="grid grid-cols-2 gap-6 pt-8">
+          <div class="space-y-2">
+            <div class="text-3xl font-bold">100%</div>
+            <div class="text-sm uppercase tracking-wider opacity-80">Fresh Produce</div>
+          </div>
+          <div class="space-y-2">
+            <div class="text-3xl font-bold">Direct</div>
+            <div class="text-sm uppercase tracking-wider opacity-80">Farmer Sourcing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Form Content Side */}
+    <div class="flex-1 flex items-center justify-center p-6 md:p-12 lg:p-20 hero-gradient">
+      <div class="w-full max-w-md">
+        <div class="md:hidden flex items-center justify-center gap-2 mb-8">
+          <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center shadow-md">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 text-white">
+              <path d="M12 3L2 12h3v8h14v-8h3L12 3z" />
+              <path d="M9 20v-5h6v5" />
+            </svg>
+          </div>
+          <span class="text-xl font-bold text-foreground tracking-tight">KrishiLink</span>
+        </div>
+
+        <Card className="surface-raised border-none shadow-2xl overflow-hidden">
+          <div class="card-padding">
+            <slot />
+          </div>
+        </Card>
+        
+        <div class="mt-8 text-center">
+          <p class="text-caption">
+            &copy; 2026 KrishiLink Platform. All rights reserved. 
+            <br />
+            Empowering regional agriculture through technology.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  /* Optional: Add smooth transition for the layout emergence */
+  .hero-gradient {
+    animation: fadeIn 0.6s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+    

@@ -1,0 +1,15 @@
+---
+import StandardLayout from '@/layouts/StandardLayout.astro'
+import OrderSuccessContent from '@/components/order_success/OrderSuccessContent'
+
+const currentPath = Astro.url.pathname
+---
+
+<StandardLayout 
+  title="Order Confirmation - FarmConnect"
+  userRole="consumer"
+  userName="Consumer"
+  currentPath={currentPath}
+>
+  <OrderSuccessContent client:load />
+</StandardLayout>

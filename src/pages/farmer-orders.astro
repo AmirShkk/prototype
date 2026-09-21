@@ -1,0 +1,20 @@
+
+---
+import StandardLayout from '@/layouts/StandardLayout.astro';
+import FarmerOrdersContent from '@/components/farmer_orders/FarmerOrdersContent';
+
+const userRole = 'farmer';
+const userName = 'Ramesh Patel';
+const userAvatar = 'https://spark-builder.s3.us-east-1.amazonaws.com/image/2026/9/6/f9e7fe03-9319-49e5-ac2f-98f3fb2b9b98.png';
+const cartCount = 0;
+---
+
+<StandardLayout 
+  title="Farmer Order Fulfillment | FarmHub Connect"
+  userRole={userRole}
+  userName={userName}
+  userAvatar={userAvatar}
+  cartCount={cartCount}
+>
+  <FarmerOrdersContent client:load />
+</StandardLayout>
