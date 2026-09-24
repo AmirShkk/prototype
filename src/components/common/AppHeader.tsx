@@ -155,22 +155,16 @@ const AppHeader: React.FC<AppHeaderProps> = ({
               <DropdownMenuSeparator />
               <DropdownMenuItem onClick={() => window.location.href = './auth-portal.html'}>
                 <SafeIcon name="User" className="mr-2 h-4 w-4" />
-                <span>Profile Settings</span>
+                <span>Sign Out</span>
               </DropdownMenuItem>
               {userRole === 'farmer' && (
                 <DropdownMenuItem onClick={() => window.location.href = './add-product.html'}>
-                  <SafeIcon name="PlusCircle" className="mr-2 h-4 w-4" />
+                  <SafeIcon name="LogOut" className="mr-2 h-4 w-4" />
+                  
                   <span>Add Product</span>
                 </DropdownMenuItem>
               )}
               <DropdownMenuSeparator />
-              <DropdownMenuItem 
-                onClick={onSignOut}
-                className="text-destructive focus:text-destructive"
-              >
-                <SafeIcon name="LogOut" className="mr-2 h-4 w-4" />
-                <span>Sign out</span>
-              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>
