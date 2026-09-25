@@ -4,6 +4,11 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 const MARKET_DATA = {
   onion: { label: 'Onion', avg: 20, history: [18, 19, 21, 20, 22, 19, 20] },
   tomato: { label: 'Tomato', avg: 18, history: [16, 17, 18, 19, 18, 17, 18] },
+  potato: { label: 'Potato', avg: 24, history: [22, 23, 24, 25, 24, 23, 24] },
+  carrot: { label: 'Carrot', avg: 30, history: [28, 29, 31, 30, 32, 29, 30] },
+  cabbage: { label: 'Cabbage', avg: 16, history: [15, 16, 17, 16, 15, 16, 16] },
+  cauliflower: { label: 'Cauliflower', avg: 28, history: [26, 27, 29, 28, 30, 27, 28] },
+  spinach: { label: 'Spinach', avg: 22, history: [20, 21, 23, 22, 24, 21, 22] },
   wheat: { label: 'Wheat', avg: 22, history: [21, 22, 22, 23, 22, 21, 22] },
 } as const
 
