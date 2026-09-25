@@ -386,14 +386,9 @@ export default function AddProductForm() {
                 <p className="text-sm text-destructive">{errors.pricePerUnit}</p>
               )}
               {/* ADDED: Mandi guidance appears once a supported crop and price are entered. */}
-              {mandiAverage && (
+              {mandiAverage && hasEnteredPrice && isPriceAboveMandi && (
                 <div
-                  className={cn(
-                    'rounded-[--radius] border p-3 text-sm transition-all duration-150',
-                    hasEnteredPrice && isPriceAboveMandi
-                      ? 'border-[hsl(var(--warning)/0.3)] bg-[hsl(var(--warning)/0.1)] text-[hsl(var(--warning))]'
-                      : 'border-border bg-muted/30 text-muted-foreground'
-                  )}
+                  className="rounded-[--radius] border border-[hsl(var(--warning)/0.3)] bg-[hsl(var(--warning)/0.1)] p-3 text-sm text-[hsl(var(--warning))] transition-all duration-150"
                   aria-live="polite"
                 >
                   <div className="flex items-center gap-2 font-medium">
