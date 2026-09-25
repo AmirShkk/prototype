@@ -162,6 +162,9 @@ export default function AddProductForm() {
   const fairPriceMin = mandiAverage ? mandiAverage * 0.85 : 0
   const fairPriceMax = mandiAverage ? mandiAverage * 1.15 : 0
   const hasEnteredPrice = typeof formData.pricePerUnit === 'number' && formData.pricePerUnit > 0
+  const isPriceAboveMandi = hasEnteredPrice && mandiAverage
+    ? formData.pricePerUnit > mandiAverage
+    : false
   const isPriceWithinBand = hasEnteredPrice && mandiAverage
     ? formData.pricePerUnit >= fairPriceMin && formData.pricePerUnit <= fairPriceMax
     : false
@@ -387,33 +390,31 @@ export default function AddProductForm() {
                 <div
                   className={cn(
                     'rounded-[--radius] border p-3 text-sm transition-all duration-150',
-                    hasEnteredPrice && isPriceWithinBand
-                      ? 'border-[hsl(var(--success)/0.3)] bg-[hsl(var(--success)/0.1)] text-[hsl(var(--success))]'
-                      : hasEnteredPrice
-                        ? 'border-[hsl(var(--warning)/0.3)] bg-[hsl(var(--warning)/0.1)] text-[hsl(var(--warning))]'
-                        : 'border-border bg-muted/30 text-muted-foreground'
+                    hasEnteredPrice && isPriceAboveMandi
+                      ? 'border-[hsl(var(--warning)/0.3)] bg-[hsl(var(--warning)/0.1)] text-[hsl(var(--warning))]'
+                      : 'border-border bg-muted/30 text-muted-foreground'
                   )}
                   aria-live="polite"
                 >
                   <div className="flex items-center gap-2 font-medium">
-                    <SafeIcon
-                      name={hasEnteredPrice && isPriceWithinBand ? 'CheckCircle2' : 'AlertTriangle'}
-                      size={16}
-                    />
+      <SafeIcon
+        name={isPriceAboveMandi ? 'AlertTriangle' : 'CheckCircle2'}
+        size={16}
+      />
                     <span>Mandi price guidance</span>
                   </div>
                   <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
                     <span>Mandi average: ₹{mandiAverage.toFixed(2)}</span>
                     <span>Fair range: ₹{fairPriceMin.toFixed(2)}–₹{fairPriceMax.toFixed(2)}</span>
                   </div>
-                  {hasEnteredPrice && !isPriceWithinBand && (
-                    <p className="mt-2 text-xs font-medium">
-                      This price is outside the suggested range. You can still submit this listing.
-                    </p>
-                  )}
-                  {hasEnteredPrice && isPriceWithinBand && (
-                    <p className="mt-2 text-xs font-medium">Your price is within the suggested fair range.</p>
-                  )}
+      {hasEnteredPrice && isPriceAboveMandi && (
+        <p className="mt-2 text-xs font-medium">
+          This price is higher than the mandi average. You can still submit this listing.
+        </p>
+      )}
+      {hasEnteredPrice && !isPriceAboveMandi && (
+        <p className="mt-2 text-xs font-medium">Your price is at or below the mandi average.</p>
+      )}
                 </div>
               )}
             </div>
