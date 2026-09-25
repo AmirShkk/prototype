@@ -9,6 +9,8 @@ import StatsOverview from './StatsOverview'
 import QuickActions from './QuickActions'
 import RecentOrders from './RecentOrders'
 import DemandAlerts from './DemandAlerts'
+// ADDED: show wholesale guidance at the top of the farmer dashboard.
+import WholesaleMarketPrice from './WholesaleMarketPrice'
 
 interface DashboardContentProps {
   farmerId: string
@@ -87,6 +89,9 @@ export default function DashboardContent({ farmerId }: DashboardContentProps) {
           Manage your products, track orders, and monitor demand in real-time.
         </p>
       </div>
+
+      {/* ADDED: wholesale guidance appears before dashboard actions and stats. */}
+      <WholesaleMarketPrice />
 
       {/* Stats Overview */}
       <StatsOverview stats={stats} />

@@ -133,7 +133,6 @@ export default defineConfig({
   },
   compressHTML: false,
   vite: {
-    base: './',
     plugins: [
       AutoImport({
         imports: [

@@ -21,6 +21,14 @@ import type { ProductData } from '@/data/ProductData'
 import LoadingSpinner from '@/components/common/LoadingSpinner'
 import ProductImageUpload from '@/components/add-product/ProductImageUpload'
 
+// ADDED: Mock mandi prices used to provide a soft fair-price check while listing.
+const MANDI_AVERAGE_PRICES: Record<string, number> = {
+  onion: 20,
+  tomato: 18,
+  wheat: 22,
+  potato: 15,
+}
+
 interface FormData {
   name: string
   description: string
@@ -148,6 +156,18 @@ export default function AddProductForm() {
       }))
     }
   }
+
+  // ADDED: Derive the current crop's fair band without blocking submission.
+  const mandiAverage = MANDI_AVERAGE_PRICES[formData.name.trim().toLowerCase()]
+  const fairPriceMin = mandiAverage ? mandiAverage * 0.85 : 0
+  const fairPriceMax = mandiAverage ? mandiAverage * 1.15 : 0
+  const hasEnteredPrice = typeof formData.pricePerUnit === 'number' && formData.pricePerUnit > 0
+  const isPriceAboveMandi = hasEnteredPrice && mandiAverage
+    ? formData.pricePerUnit > mandiAverage
+    : false
+  const isPriceWithinBand = hasEnteredPrice && mandiAverage
+    ? formData.pricePerUnit >= fairPriceMin && formData.pricePerUnit <= fairPriceMax
+    : false
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -364,6 +384,33 @@ export default function AddProductForm() {
               />
               {errors.pricePerUnit && (
                 <p className="text-sm text-destructive">{errors.pricePerUnit}</p>
+              )}
+              {/* ADDED: Mandi guidance appears once a supported crop and price are entered. */}
+              {mandiAverage && hasEnteredPrice && isPriceAboveMandi && (
+                <div
+                  className="rounded-[--radius] border border-[hsl(var(--warning)/0.3)] bg-[hsl(var(--warning)/0.1)] p-3 text-sm text-[hsl(var(--warning))] transition-all duration-150"
+                  aria-live="polite"
+                >
+                  <div className="flex items-center gap-2 font-medium">
+      <SafeIcon
+        name={isPriceAboveMandi ? 'AlertTriangle' : 'CheckCircle2'}
+        size={16}
+      />
+                    <span>Mandi price guidance</span>
+                  </div>
+                  <div className="mt-2 grid grid-cols-2 gap-2 text-xs">
+                    <span>Mandi average: ₹{mandiAverage.toFixed(2)}</span>
+                    <span>Fair range: ₹{fairPriceMin.toFixed(2)}–₹{fairPriceMax.toFixed(2)}</span>
+                  </div>
+      {hasEnteredPrice && isPriceAboveMandi && (
+        <p className="mt-2 text-xs font-medium">
+          This price is higher than the mandi average. You can still submit this listing.
+        </p>
+      )}
+      {hasEnteredPrice && !isPriceAboveMandi && (
+        <p className="mt-2 text-xs font-medium">Your price is at or below the mandi average.</p>
+      )}
+                </div>
               )}
             </div>
 
