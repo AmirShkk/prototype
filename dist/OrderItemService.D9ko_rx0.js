@@ -1,0 +1,71 @@
+const orderItemDataList = [{
+  id: "oli-001",
+  orderId: "ord-1001",
+  productId: "prd-001",
+  farmerId: "far-001",
+  quantity: 4,
+  unitPrice: 28,
+  lineTotal: 112
+}, {
+  id: "oli-002",
+  orderId: "ord-1001",
+  productId: "prd-002",
+  farmerId: "far-001",
+  quantity: 2,
+  unitPrice: 34,
+  lineTotal: 68
+}, {
+  id: "oli-003",
+  orderId: "ord-1001",
+  productId: "prd-001",
+  farmerId: "far-001",
+  quantity: 2,
+  unitPrice: 20,
+  lineTotal: 40
+}, {
+  id: "oli-004",
+  orderId: "ord-1002",
+  productId: "prd-003",
+  farmerId: "far-002",
+  quantity: 1,
+  unitPrice: 220,
+  lineTotal: 220
+}, {
+  id: "oli-005",
+  orderId: "ord-1002",
+  productId: "prd-004",
+  farmerId: "far-002",
+  quantity: 2,
+  unitPrice: 42,
+  lineTotal: 84
+}, {
+  id: "oli-006",
+  orderId: "ord-1003",
+  productId: "prd-005",
+  farmerId: "far-003",
+  quantity: 1,
+  unitPrice: 980,
+  lineTotal: 980
+}, {
+  id: "oli-007",
+  orderId: "ord-1003",
+  productId: "prd-006",
+  farmerId: "far-003",
+  quantity: 1,
+  unitPrice: 118,
+  lineTotal: 118
+}, {
+  id: "oli-008",
+  orderId: "ord-1004",
+  productId: "prd-007",
+  farmerId: "far-004",
+  quantity: 1,
+  unitPrice: 160,
+  lineTotal: 160
+}];
+function getByOrderId(orderId) {
+  return orderItemDataList.filter((item) => item.orderId === orderId);
+}
+export {
+  getByOrderId as g
+};

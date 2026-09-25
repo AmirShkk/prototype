@@ -1,0 +1,114 @@
+import { g as getById$3 } from "./FarmerService.BuornUJX.js";
+import { a as getById$2 } from "./HubService.B31WKdJX.js";
+import { a as getById$1 } from "./OrderService.DlXVTjI7.js";
+const deliveryDataList = [{
+  id: "del-001",
+  orderId: "ord-1001",
+  farmerId: "far-001",
+  hubId: "hub-001",
+  status: "In Transit",
+  dispatchedAt: "2026-09-05T13:00:00",
+  receivedAt: "",
+  authMethod: "QR",
+  authReference: "QR-9021",
+  vehicleLabel: "Mini Van GJ-01-AR-2201",
+  handledBy: "Suresh"
+}, {
+  id: "del-002",
+  orderId: "ord-1002",
+  farmerId: "far-002",
+  hubId: "hub-002",
+  status: "Received at Hub",
+  dispatchedAt: "2026-09-04T16:40:00",
+  receivedAt: "2026-09-04T18:10:00",
+  authMethod: "OTP",
+  authReference: "OTP-7712",
+  vehicleLabel: "Pickup BR-11-BB-1122",
+  handledBy: "Aman"
+}, {
+  id: "del-003",
+  orderId: "ord-1003",
+  farmerId: "far-003",
+  hubId: "hub-003",
+  status: "Prepared",
+  dispatchedAt: "",
+  receivedAt: "",
+  authMethod: "Manual Check",
+  authReference: "MC-3301",
+  vehicleLabel: "Cargo Truck PB-10-CC-4411",
+  handledBy: "Harpreet"
+}, {
+  id: "del-004",
+  orderId: "ord-1004",
+  farmerId: "far-004",
+  hubId: "hub-004",
+  status: "Received at Hub",
+  dispatchedAt: "2026-09-03T15:00:00",
+  receivedAt: "2026-09-03T17:15:00",
+  authMethod: "QR",
+  authReference: "QR-7744",
+  vehicleLabel: "Tempo KA-09-DD-9033",
+  handledBy: "Meena"
+}];
+function getAll() {
+  return deliveryDataList;
+}
+function getById(id) {
+  return deliveryDataList.find((item) => item.id === id);
+}
+function getByHubId(hubId) {
+  return deliveryDataList.filter((item) => item.hubId === hubId);
+}
+function getByIdVO(deliveryId) {
+  const delivery = getById(deliveryId);
+  if (!delivery) return void 0;
+  return {
+    ...delivery,
+    farmer: getById$3(delivery.farmerId),
+    hub: getById$2(delivery.hubId),
+    order: getById$1(delivery.orderId)
+  };
+}
+function query(params) {
+  const keyword = params.keyword?.trim().toLowerCase() ?? "";
+  const filter = params.filter ?? {};
+  return deliveryDataList.filter((item) => {
+    const matchKeyword = keyword.length === 0 || item.id.toLowerCase().includes(keyword) || item.vehicleLabel.toLowerCase().includes(keyword) || item.authReference.toLowerCase().includes(keyword);
+    const matchFilter = Object.entries(filter).every(([key, val]) => {
+      if (val === void 0) return true;
+      const itemVal = item[key];
+      return Array.isArray(val) ? val.includes(itemVal) : itemVal === val;
+    });
+    return matchKeyword && matchFilter;
+  }).sort((a, b) => {
+    const direction = params.sortDirection === "desc" ? -1 : 1;
+    const sortKey = params.sortKey;
+    if (!sortKey) return b.dispatchedAt.localeCompare(a.dispatchedAt) * direction;
+    const av = a[sortKey];
+    const bv = b[sortKey];
+    if (av === bv) return 0;
+    return av > bv ? direction : -direction;
+  });
+}
+function loadPersisted() {
+  if (typeof window === "undefined") return null;
+  const raw = window.localStorage.getItem("deliveryDataList");
+  if (!raw) return null;
+  return JSON.parse(raw);
+}
+function savePersisted(items) {
+  if (typeof window === "undefined") return;
+  window.localStorage.setItem("deliveryDataList", JSON.stringify(items));
+}
+const DeliveryService = {
+  getAll,
+  getById,
+  getByHubId,
+  getByIdVO,
+  query,
+  loadPersisted,
+  savePersisted
+};
+export {
+  DeliveryService as D
+};
