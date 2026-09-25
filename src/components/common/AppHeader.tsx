@@ -1,6 +1,7 @@
 import { cn } from '@/lib/utils'
 import React from 'react';
 import SafeIcon from '@/components/common/SafeIcon';
+import LanguageSelector from '@/components/common/LanguageSelector';
 import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
@@ -107,6 +108,7 @@ const AppHeader: React.FC<AppHeaderProps> = ({
         </div>
 
         <div className="flex items-center gap-2 md:gap-4">
+          <LanguageSelector compact />
           {userRole === 'consumer' && (
             <Button
               variant="ghost"

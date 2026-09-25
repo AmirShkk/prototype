@@ -1,20 +1,8 @@
 ---
-// Root page redirect
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import LanguageLanding from '@/components/common/LanguageLanding';
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Web App</title>
-  </head>
-  <body>
-    <script is:inline>
-      window.location.href = './auth-portal.html';
-    </script>
-    <noscript>
-      <meta http-equiv="refresh" content="0; url=./auth-portal.html" />
-    </noscript>
-  </body>
-</html>
+<BaseLayout title="KrishiLink - Choose Language" description="Choose your preferred language for KrishiLink">
+  <LanguageLanding client:load />
+</BaseLayout>
