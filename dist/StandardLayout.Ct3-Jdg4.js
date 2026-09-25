@@ -1,5 +1,5 @@
 import { c as createComponent, r as renderComponent, a as renderTemplate, b as createAstro, m as maybeRenderHead, d as renderSlot } from "./astro/server.pHTpn1D4.js";
-import { $ as $$BaseLayout } from "./BaseLayout.DsO73W9f.js";
+import { $ as $$BaseLayout } from "./BaseLayout.CQ4I5Z1p.js";
 import { jsxs, jsx } from "react/jsx-runtime";
 import { c as cn, S as SafeIcon, B as Button } from "./button.CREkWhZp.js";
 import * as React from "react";
